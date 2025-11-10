@@ -22,15 +22,84 @@
 */
 
 
-int main() {
-    
-    printf("--- C언어 미니 프로젝트 시작! ---\n");
+#include <stdio.h> //입출력 함수
+#include <stdlib.h> //난수 관련 함수
+#include <time.h> //시간 관련 함수
 
-    /*
-        3. [알고리즘]에서 설계한 main 함수의 흐름을
-           여기에 C언어로 자유롭게 구현하세요.
-    */
-    
-    
+// 카드 덱 배열 생성 (1~13)
+// J(11), Q(12), K(13)은 10으로 계산
+int deck[13] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+
+// 카드 두 장을 뽑는 함수
+void drawCards(int *card1, int *card2) {
+    int index1, index2;
+
+    // 첫 번째 카드 인덱스 랜덤 선택
+    index1 = rand() % 13;
+
+    // 두 번째 카드 인덱스는 첫 번째와 겹치지 않게 다시 랜덤 선택
+    do {
+        index2 = rand() % 13;
+    } while (index2 == index1);
+
+    *card1 = deck[index1];
+    *card2 = deck[index2];
+}
+
+// 카드 점수 계산 함수 (두 장의 합 % 10)
+int calcScore(int card1, int card2) {
+    int total = card1 + card2;
+    return total % 10;
+}
+
+int main() {
+    int playerCard1, playerCard2;
+    int bankerCard1, bankerCard2;
+    int playerScore, bankerScore;
+
+    // 랜덤 시드 설정 (매번 다른 결과를 위해)
+    srand(time(NULL));
+
+    printf("Place your bets, please.\n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("No more bets.\n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("                        \n");
+    printf("Cards are dealth.\n");
+
+
+
+    // 플레이어와 딜러 각각 두 장의 카드 받기
+    drawCards(&playerCard1, &playerCard2);
+    drawCards(&bankerCard1, &bankerCard2);
+
+    // 점수 계산
+    playerScore = calcScore(playerCard1, playerCard2);
+    bankerScore = calcScore(bankerCard1, bankerCard2);
+
+    // 결과 출력
+    printf("\n플레이어 카드: [%d, %d], 점수: %d\n", playerCard1, playerCard2, playerScore);
+    printf("딜러 카드: [%d, %d], 점수: %d\n", bankerCard1, bankerCard2, bankerScore);
+
+    // 승패 판정
+    if (playerScore > bankerScore) {
+        printf("\n Player wins!\n");
+    } else if (playerScore < bankerScore) {
+        printf("\n Banker wins!\n");
+    } else {
+        printf("\n It's a tie!\n");
+    }
+
     return 0;
 }
