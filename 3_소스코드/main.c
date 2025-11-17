@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <window.h> //window는 대기함수
 /*
     1. [설계]에서 정의한 변수, 배열, (필요하면) 구조체를 여기에 선언하세요.
     
@@ -30,7 +30,7 @@
 // J(11), Q(12), K(13)은 10으로 계산
 int deck[13] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
-// 카드 두 장을 뽑는 함수
+// 카드 두 장을 뽑는 함수->카드를 뽑고 나서 되돌리지 않으므로 
 void drawCards(int *card1, int *card2) {
     int index1, index2;
 
@@ -57,30 +57,20 @@ int main() {
     int bankerCard1, bankerCard2;
     int playerScore, bankerScore;
 
-    // 랜덤 시드 설정 (매번 다른 결과를 위해)
+    // 랜덤 시드 설정 (매번 다른 결과를 위해) srand가 난수의 시작점을 나타내는데 time(NULL)이 이 지점을 항상 다르게 하므로 완전 랜덤한 변수.
     srand(time(NULL));
 
     printf("Place your bets, please.\n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
+    Sleep(1000); //1초간 대기
     printf("No more bets.\n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
-    printf("                        \n");
+    Sleep(2000); //2초간 대기
     printf("Cards are dealth.\n");
 
+    printf("Please wait for scoring.\n");
+    Sleep(3000);
 
 
-    // 플레이어와 딜러 각각 두 장의 카드 받기
+    // 플레이어와 딜러 각각 두 장의 카드 받기->이미 정의된 함수이기에 int를 넣으면 안됨.
     drawCards(&playerCard1, &playerCard2);
     drawCards(&bankerCard1, &bankerCard2);
 
