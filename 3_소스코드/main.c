@@ -30,11 +30,11 @@
 // J(11), Q(12), K(13)은 10으로 계산
 int deck[13] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
-// 카드 두 장을 뽑는 함수->카드를 뽑고 나서 되돌리지 않으므로 
+// 카드 두 장을 뽑는 함수->카드를 뽑고 나서 되돌리지 않으므로 void사용
 void drawCards(int *card1, int *card2) {
     int index1, index2;
 
-    // 첫 번째 카드 인덱스 랜덤 선택
+    // rand를 사용하여 0부터 12사이의 카드 
     index1 = rand() % 13;
 
     // 두 번째 카드 인덱스는 첫 번째와 겹치지 않게 다시 랜덤 선택
@@ -42,7 +42,7 @@ void drawCards(int *card1, int *card2) {
         index2 = rand() % 13;
     } while (index2 == index1);
 
-    *card1 = deck[index1];
+    *card1 = deck[index1]; //deck 배열에서 카드를 한 장씩 가져옴
     *card2 = deck[index2];
 }
 
