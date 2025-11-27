@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <window.h> //window는 대기함수
+#include <windows.h> //window는 대기함수
 /*
     1. [설계]에서 정의한 변수, 배열, (필요하면) 구조체를 여기에 선언하세요.
     
